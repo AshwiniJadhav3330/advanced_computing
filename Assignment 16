@@ -24,4 +24,7 @@ select Snum,Odate from orders group by Odate;
 4) Let us assume that each salesperson is to have only one customer of a given
 rating, and that this is currently the case. Enter a command that enforces it.
 
->  alter table customers add constraint unique(Rating,Snum);
+->  alter table customers add constraint unique(Rating,Snum);
+
+-> create unique index i_cnum_rating_snum on customers(cnum,rating,snum);
+
