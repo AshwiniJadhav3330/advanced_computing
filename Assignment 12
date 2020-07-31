@@ -8,18 +8,17 @@ ANY of Serres’.
 
 > select Cname, rating  
 	
-from customers 
-	
+from customers 	
 where rating >= Any (select rating from customers 
-				where Snum IN (select Snum from salespeople 
-							where Sname = 'Serres')); 
+where Snum IN (select Snum from salespeople 
+where Sname = 'Serres')); 
 
 > select Cname, rating 
 	
 from customers 
         where rating >= (select rating 
-				from customers natural join salespeople 
-				where Sname = 'Serres') ;
+	from customers natural join salespeople 
+	where Sname = 'Serres') ;
 
 
 
@@ -41,18 +40,18 @@ customers in London.
 > select Onum, Amt 
 	from orders 
 	where amt > any (select amt 
-			from orders 
-			where cnum IN ( select Cnum 
-					from customers 
-					where city = 'London'));
+	from orders 
+	where cnum IN ( select Cnum 
+	from customers 
+	where city = 'London'));
 
 > select Onum,Amt 
 
 	from orders 
 
 	where orders.amt > any (select amt 
-				from orders natural join customers 
-				where city = 'London') ;
+	from orders natural join customers 
+	where city = 'London') ;
 
 
 
@@ -61,27 +60,27 @@ customers in London.
 > select Onum, Amt 
 	from orders 
 	where amt >  (select min(amt) 
-			from orders 
-			where cnum IN ( select Cnum 
-					from customers 
-					where city = 'London'));
+	from orders 
+	where cnum IN ( select Cnum 
+	from customers 
+	where city = 'London'));
 
 > select Onum, Amt 
 	from orders 
 	where amt >  (select max(amt) 
-			from orders 
-			where cnum IN ( select Cnum 
-					from customers 
-					where city = 'London'));
+	from orders 
+	where cnum IN ( select Cnum 
+	from customers 
+	where city = 'London'));
 
 > select Onum,Amt 
 
 	from orders 
 
 	where orders.amt >  (select min(amt) 
-				from orders 
-				natural join customers 
-				where city = 'London') ;
+	from orders 
+	natural join customers 
+	where city = 'London') ;
         
         
         
